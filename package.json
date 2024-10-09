@@ -17,6 +17,7 @@
   "author": "Chris Jones",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.7",
     "commander": "^10.0.1",
     "figlet": "^1.6.0",
     "prompt-sync": "^4.2.0"
