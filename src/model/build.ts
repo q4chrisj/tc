@@ -15,5 +15,6 @@ export type Parameter = {
 };
 
 export type Step = {
+  id: string;
   name: string;
 };

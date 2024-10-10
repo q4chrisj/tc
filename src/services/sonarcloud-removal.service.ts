@@ -18,9 +18,11 @@ export class SonarCloudRemovalService {
         for (const step of build.steps.step) {
           if (step.name.toLowerCase().includes("sonar")) {
             console.log(
-              `Found Sonar Cloud step in project: ${project.parentProjectId} -> ${project.name}. Step name: ${step.name}`,
+              `Found Sonar Cloud step in project: ${project.parentProjectId} -> ${project.name}. Step name: ${step.name}:${step.id}`,
             );
             sonarCloudSteps++;
+
+            // Delete the step?
           }
         }
       }
