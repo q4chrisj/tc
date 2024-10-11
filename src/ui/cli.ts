@@ -1,8 +1,5 @@
 import figlet from "figlet";
-import { createTable } from "nice-table";
 import { Command } from "commander";
-import { TeamCityService } from "../services/teamcity.service";
-import { Build } from "../model";
 import { handleListSonarCloudBuildSteps } from "./handleListSonarCloudBuildSteps";
 import { handleShowRunningBuilds } from "./handleShowRunningBuilds";
 
@@ -17,14 +14,6 @@ export class CLI {
       .name("tc")
       .version(version)
       .description("Manage Team City from the command line.");
-
-    program
-      .command("list-projects")
-      .allowExcessArguments(false)
-      .description("Deploys the specified release to the target environment")
-      .action(async () => {
-        // execute code to list project
-      });
 
     program
       .command("list-sonarcloud-steps")
