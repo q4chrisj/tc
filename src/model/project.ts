@@ -1,4 +1,4 @@
-import { BuildType } from "./build";
+import { BuildType } from "./build-type";
 
 export type ProjectItems = {
   count: number;

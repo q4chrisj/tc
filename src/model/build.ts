@@ -1,20 +1,18 @@
-export type BuildType = {
-  id: string;
-  name: string;
-  settings: {
-    property: Parameter[];
-  };
-  steps: {
-    step: Step[];
-  };
+export type Builds = {
+  count: number;
+  href: string;
+  build: Build[];
 };
 
-export type Parameter = {
-  name: string;
-  value: string;
-};
-
-export type Step = {
-  id: string;
-  name: string;
+export type Build = {
+  id: number;
+  buildTypeId: string;
+  number: string;
+  status: string;
+  state: string;
+  branchName: string;
+  defaultBranch: boolean;
+  href: string;
+  webUrl: string;
+  finishOnAgentDate: string;
 };
