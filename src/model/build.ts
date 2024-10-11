@@ -16,7 +16,3 @@ export type Build = {
   webUrl: string;
   finishOnAgentDate: string;
 };
-
-export type BuildDetails = {
-  Build: Build;
-};
