@@ -17,6 +17,7 @@ export type ProjectItem = {
 export type Project = {
   id: string;
   name: string;
+  description: string;
   parentProjectId: string;
   href: string;
   parameters: {
@@ -29,9 +30,11 @@ export type Project = {
     ];
   };
   projects: {
-    project: Project[];
+    count: number;
+    project: ProjectItem[];
   };
   buildTypes: {
+    count: number;
     buildType: BuildType[];
   };
 };

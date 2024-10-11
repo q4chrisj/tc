@@ -1,4 +1,4 @@
-import { BuildType, Builds, Project, ProjectItems } from "../model";
+import { BuildType, Builds, Project, ProjectItems, Server } from "../model";
 import { get } from "./http.service";
 
 export class TeamCityService {
@@ -33,7 +33,14 @@ export class TeamCityService {
       count > 0
         ? `/builds?locator=state:running,count:${count}`
         : `/builds?locator=state:running`;
+
     return await get<Builds>(url).then((response) => {
+      return response;
+    });
+  };
+
+  getServer = async () => {
+    return await get<Server>(`/server`).then((response) => {
       return response;
     });
   };

@@ -1,6 +1,6 @@
 import { createTable } from "nice-table";
-import { Project, ProjectItems } from "../model";
-import { TeamCityService } from "../services/teamcity.service";
+import { TeamCityService } from "../../services/teamcity.service";
+import { Project, ProjectItems } from "../../model";
 
 type SonarCloudStep = {
   project: string;

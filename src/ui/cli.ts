@@ -1,7 +1,11 @@
 import figlet from "figlet";
 import { Command } from "commander";
-import { handleListSonarCloudBuildSteps } from "./handleListSonarCloudBuildSteps";
-import { handleShowRunningBuilds } from "./handleShowRunningBuilds";
+import {
+  handleGetServerInfo,
+  handleListProjects,
+  handleListSonarCloudBuildSteps,
+  handleShowRunningBuilds,
+} from "./handlers";
 
 export class CLI {
   async run() {
@@ -15,6 +19,21 @@ export class CLI {
       .version(version)
       .description("Manage Team City from the command line.");
 
+    program
+      .command("get-serverinfo")
+      .allowExcessArguments(false)
+      .description("Display information about team city.")
+      .action(async () => {
+        await handleGetServerInfo();
+      });
+
+    program
+      .command("list-projects")
+      .allowExcessArguments(false)
+      .description("List all projects in TeamCity")
+      .action(async () => {
+        await handleListProjects();
+      });
     program
       .command("list-sonarcloud-steps")
       .allowExcessArguments(false)

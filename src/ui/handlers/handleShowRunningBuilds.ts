@@ -1,6 +1,6 @@
 import { createTable } from "nice-table";
-import { Build, Builds } from "../model";
-import { TeamCityService } from "../services/teamcity.service";
+import { TeamCityService } from "../../services/teamcity.service";
+import { Build, Builds } from "../../model";
 
 export async function handleShowRunningBuilds(options: any): Promise<void> {
   const service: TeamCityService = new TeamCityService();
