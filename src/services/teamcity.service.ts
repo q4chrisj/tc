@@ -27,11 +27,14 @@ export class TeamCityService {
       return response;
     });
   };
-  getRunningBuilds = async () => {
-    return await get<Builds>(`/builds?locator=state:running`).then(
-      (response) => {
-        return response;
-      },
-    );
+
+  getRunningBuilds = async (count: number) => {
+    const url =
+      count > 0
+        ? `/builds?locator=state:running,count:${count}`
+        : `/builds?locator=state:running`;
+    return await get<Builds>(url).then((response) => {
+      return response;
+    });
   };
 }

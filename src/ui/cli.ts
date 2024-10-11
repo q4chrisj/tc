@@ -4,6 +4,7 @@ import { Command } from "commander";
 import { TeamCityService } from "../services/teamcity.service";
 import { Build } from "../model";
 import { handleListSonarCloudBuildSteps } from "./handleListSonarCloudBuildSteps";
+import { handleShowRunningBuilds } from "./handleShowRunningBuilds";
 
 export class CLI {
   async run() {
@@ -39,24 +40,7 @@ export class CLI {
       .allowExcessArguments(false)
       .description("Shows builds that are currerntly running in TeamCity")
       .action(async (options) => {
-        const service = new TeamCityService();
-        const builds = await service.getRunningBuilds();
-
-        const actualBuilds =
-          options.limit !== ""
-            ? builds.build.slice(0, parseInt(options.limit))
-            : builds.build;
-
-        const table = createTable<Build>(
-          actualBuilds,
-          ["buildTypeId", "number", "status"],
-          {
-            fullWidth: true,
-            horizontalAlignment: "left",
-          },
-        );
-
-        console.log(table);
+        await handleShowRunningBuilds(options);
       });
 
     program.parse(process.argv);
