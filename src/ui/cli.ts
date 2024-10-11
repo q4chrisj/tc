@@ -5,6 +5,7 @@ import {
   handleListProjects,
   handleListSonarCloudBuildSteps,
   handleShowRunningBuilds,
+  handleClearCache,
 } from "./handlers";
 
 export class CLI {
@@ -19,6 +20,13 @@ export class CLI {
       .version(version)
       .description("Manage Team City from the command line.");
 
+    program
+      .command("clear-cache")
+      .allowExcessArguments(false)
+      .description("Clears the local cache.")
+      .action(async () => {
+        await handleClearCache();
+      });
     program
       .command("get-serverinfo")
       .allowExcessArguments(false)

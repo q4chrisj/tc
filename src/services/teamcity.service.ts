@@ -1,7 +1,10 @@
 import { BuildType, Builds, Project, ProjectItems, Server } from "../model";
+import { CacheService } from "./cache.service";
 import { get } from "./http.service";
 
 export class TeamCityService {
+  private _cacheService: CacheService = new CacheService();
+
   getProjects = async () => {
     return await get<ProjectItems>(`/projects`).then((response) => {
       return response;
@@ -40,8 +43,17 @@ export class TeamCityService {
   };
 
   getServer = async () => {
-    return await get<Server>(`/server`).then((response) => {
+    const cacheData = await this._cacheService.get<Server>("server");
+    if (cacheData) {
+      return cacheData;
+    }
+
+    const response = await get<Server>(`/server`).then((response) => {
       return response;
     });
+
+    await this._cacheService.set("server", response);
+
+    return response;
   };
 }

@@ -4,6 +4,7 @@
 
 import { CLI } from "./ui/cli";
 import { config } from "./config";
+import { CacheService } from "./services/cache.service";
 
 async function run(): Promise<void> {
   if (!config.TeamCityUri || !config.TeamCityToken) {
@@ -13,6 +14,7 @@ async function run(): Promise<void> {
     return;
   }
 
+  CacheService.init();
   const cli = new CLI();
   cli.run();
 }

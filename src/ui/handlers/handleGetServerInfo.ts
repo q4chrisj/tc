@@ -4,11 +4,8 @@ import { Server } from "../../model";
 
 export async function handleGetServerInfo(): Promise<void> {
   const teamCityService = new TeamCityService();
-  const server = await teamCityService.getServer();
-
-  const servers = [server];
-
-  const table = createTable<Server>(servers, ["version", "role", "webUrl"], {
+  const server: Server = await teamCityService.getServer();
+  const table = createTable<Server>([server], ["version", "role", "webUrl"], {
     fullWidth: true,
     horizontalAlignment: "left",
   });
