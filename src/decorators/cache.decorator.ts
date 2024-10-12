@@ -2,12 +2,10 @@ import { CacheService } from "../services/cache.service";
 
 export function cacheable(originalMethod: any, _context: any) {
   const _cacheService = new CacheService();
-  async function replacementMethod(this: any, ...args: any[]) {
+  async function returnCachedData(this: any, ...args: any[]) {
     const cacheKey = `${originalMethod.name}_${args.join("_")}`;
     const cacheData = await _cacheService.get(cacheKey);
-    console.log("in cache decorator");
     if (cacheData) {
-      // console.log("cache hit", cacheData);
       return cacheData;
     }
 
@@ -17,5 +15,5 @@ export function cacheable(originalMethod: any, _context: any) {
 
     return response;
   }
-  return replacementMethod;
+  return returnCachedData;
 }
