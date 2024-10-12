@@ -21,7 +21,6 @@ export class CacheService {
     const result: CachedData<T> = JSON.parse(cacheString);
     const now = Date.now();
     if (result.expiration < now) {
-      console.log("Cache expired");
       return null as T;
     }
     return result.data;
@@ -30,7 +29,7 @@ export class CacheService {
   set = async <T>(
     key: string,
     value: T,
-    expirySeconds: number = 60,
+    expirySeconds: number,
   ): Promise<void> => {
     const cacheKey = this._createCacheKey(key);
     const cacheEntry = `.cache/${cacheKey}.json`;
