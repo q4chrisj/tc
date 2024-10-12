@@ -27,13 +27,17 @@ export class CacheService {
     return result.data;
   };
 
-  set = async <T>(key: string, value: T): Promise<void> => {
+  set = async <T>(
+    key: string,
+    value: T,
+    expirySeconds: number = 60,
+  ): Promise<void> => {
     const cacheKey = this._createCacheKey(key);
     const cacheEntry = `.cache/${cacheKey}.json`;
 
     const cacheData: CachedData<T> = {
       key: cacheKey,
-      expiration: Date.now() + 60 * 1000, // 1 minute
+      expiration: Date.now() + expirySeconds * 1000, // 1 minute
       data: value,
     };
 
