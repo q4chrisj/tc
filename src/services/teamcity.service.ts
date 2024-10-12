@@ -40,7 +40,7 @@ export class TeamCityService {
     });
   };
 
-  @cacheable
+  @(cacheable<Server>)
   public async getServer(): Promise<Server> {
     return await get<Server>(`/server`).then((response) => {
       return response;

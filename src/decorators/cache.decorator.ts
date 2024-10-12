@@ -1,17 +1,17 @@
 import { CacheService } from "../services/cache.service";
 
-export function cacheable(originalMethod: any, _context: any) {
+export function cacheable<T>(originalMethod: any, _context: any) {
   const _cacheService = new CacheService();
   async function returnCachedData(this: any, ...args: any[]) {
     const cacheKey = `${originalMethod.name}_${args.join("_")}`;
-    const cacheData = await _cacheService.get(cacheKey);
+    const cacheData = await _cacheService.get<T>(cacheKey);
     if (cacheData) {
       return cacheData;
     }
 
     const response = await originalMethod.apply(this, args);
 
-    await _cacheService.set(cacheKey, response);
+    await _cacheService.set<T>(cacheKey, response);
 
     return response;
   }
